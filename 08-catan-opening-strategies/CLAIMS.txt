@@ -1,0 +1,56 @@
+EVERY OUTCOME - VIDEO 8 - CLAIMS TABLE (every number in the script, where it came from)
+Code outputs are in V8_Catan_Code_Output.txt. "Sim" = Catanatron v3.3.0 simulation, standard ValueFunctionPlayer bots, base game, 4 players, official spiral number placement, 10 victory points. All games seeded (see code/exp.py); raw per-game results are in code/results_jsonl.zip.
+
+CLAIM | VALUE IN SCRIPT | HOW CHECKED
+Catan designer, year | Klaus Teuber, 1995 | Wikipedia (Catan)
+Setup: 19 hexes (4 forest, 4 pasture, 4 fields, 3 hills, 3 mountains, 1 desert), tokens 2-12, roll two dice, 7 moves the robber, 10 VP wins | as stated | Catan rulebook 5th ed. and Wikipedia
+Distance rule (no settlement next to another) and snake placement order 1-2-3-4-4-3-2-1 | as stated | Catan rulebook 5th ed. (first player places second settlement last)
+Ways to roll each sum | 7 = 6 ways, 6 and 8 = 5, 2 and 12 = 1, of 36 | Exact arithmetic (math8.py)
+Dots under each token = ways to roll the number | as stated | Exact arithmetic; matches token dots
+Dots on all 18 tokens | 58 | Exact arithmetic (math8.py)
+Typical opening ~20 dots gives ~0.56 cards per roll | 20/36 = 0.556 | Arithmetic; average opening of the standard bots is 19.98 dots (Sim, 10,000 games x 4 seats)
+A 6 or 8 hex pays nothing over 10 rolls | 22% (0.2242) | Exact: (31/36)^10
+A game lasts ~85 rolls; a 6 pays ~12 times | 85.25 rolls; 85.25 x 5/36 = 11.8 | Sim, 100 games of four standard bots (actions_out.txt); arithmetic
+Resource layouts | 244,432,188,000 | Exact: 19!/(4!4!4!3!3!1!) (math8.py)
+Harbour arrangements | 15,120 | Exact: 9!/4! (4 identical generic harbours, 5 distinct)
+Boards with harbours | about 3.7 quadrillion (3,695,814,682,560,000) | Exact product; counts the simulator's fixed spiral start corner, ignores rotations
+Rulebook places tokens alphabetically in a spiral from a corner toward the centre, desert skipped | as stated | Catan rulebook 5th ed. (Set-Up, Variable); matches Catanatron official_spiral
+Rulebook forbids 6 and 8 next to each other when tokens are shuffled | as stated | Catan rulebook 5th ed.
+Spiral boards: best legal two-settlement opening | 22 to 25 dots on all 5,000 sampled boards | Sample (math8.py, seed 8)
+Shuffled-token boards: best legal opening | 20 to 29 dots on 5,000 sampled boards | Sample (math8.py)
+86% of shuffled boards have two of the four 6/8 hexes touching; 0% on spiral | 86.06% / 0.000% of 5,000 | Sample (math8.py)
+Most-dots player wins | 16.5% (576 of 3,500), 95% interval 15.3% to 17.7% | Sim: original 1,500 games (15.2%, 228) plus 2,000 replication games on fresh seeds (17.4%, 348); challenger in a random seat vs three standard bots
+Most-dots opening dots | 21.6 vs 20.0 for standard bots (19.98) | Sim
+Fewest dots / random / ore-wheat / variety-first win rates | 0.0% (0/1,500) / 1.3% (20) / 13.8% (207) / 24.7% (864 of 3,500) | Sim, 1,500 games each (variety first 3,500: original 23.3% plus replication 25.7% on 2,000 fresh-seed games); intervals: 0-0.3 / 0.9-2.1 / 12.1-15.6 / 23.3-26.1
+Variety-first opening dots | 19.4 | Sim
+Gave up 2.2 dots, won 8.2 points more | 21.6-19.4; 24.7-16.5 (difference 8.2, +/- 1.9) | Arithmetic on pooled Sim values
+Most-dots player touched all 5 resources | 257 of 3,500 games (7.3%) | Sim (pooled)
+Standard bots touch all 5 resources | 67.1% of openings ("two games in three") | Sim, 10,000 games x 4 seats
+Most-dots player wins by resources touched | 2: 3.9% (155 games); 3: 10.7% (1,438); 4: 19.6% (1,650); 5: 35.8% (257) | Sim, pooled 3,500 games. Correlational within a rule; the causal test is the rule comparison
+Most-dots player covered four or fewer resources | 93 of 100 (3,243 of 3,500) | Sim (155+1,438+1,650)
+Bank rate | 4 cards for 1 by default | Catan rulebook / Wikipedia
+Seat win rates, four identical bots | seat 1 27.9% (2,794), seat 2 24.4%, seat 3 24.7%, seat 4 22.9% of 10,000 | Sim; 95% interval seat 1 27.1% to 28.8%
+First seat wins about 1 more game in 20 than the last | 27.9 - 22.9 = 5.0 points | Arithmetic
+Opening dots vs win rate | 16 dots 15.9% (856); 23 dots 28.2% (1,547) | Sim, per player-seat, 10,000 games
+Goodman, Perez-Liebana and Lucas, "Seeding for Success" (2025) | Catan with 3 players, first player 22% mean win rate; "the initial shuffle of hex board is much more important than the sequence of dice rolls" | arXiv 2503.02686, section VI-D
+Million-game seat study | first seat most often gets the best opening, last seat most often the worst | boardgameanalysis.com, "The fair Catan board quest" (greedy dots strategy, 1 million simulated games; measures opening quality, not wins)
+Dice-only experiment | 150 boards x 40 dice seeds = 6,000 games, fixed seating, openings deterministic | Sim
+Favourite seat chosen on 20 dice seeds wins 44.0% of the other 20 | split-half over 300 half-board estimates | Sim (analyze.py extras)
+All four seats won at least once | 128 of 150 boards | Sim
+Seat with single most dots is the board's favourite | 34 of 111 boards (boards with a unique top) | Sim
+Variety tracks wins ~3x as closely as dots | correlation of seat win share: 0.336 (resource kinds) vs 0.105 (dots) | Sim, 600 seat-board pairs
+Seats with 5 / 4 resources win | 29.0% (405 seats) / 16.7% (195 seats) | Sim, dice-only experiment; the 10,000-game seat experiment gives 28.9% / 17.0%
+Bots never trade with each other | 0 player-to-player trade actions in 100 games | Sim (actions_out.txt)
+Bank trades per game / development cards bought per game | 25.8 / 2.2 (whole table) | Sim, 100 games
+Bots look one move ahead | as stated | Catanatron source (players/value.py: scores the position after each candidate action)
+Rubik's cube positions | 43,252,003,274,489,856,000 ("forty-three quintillion") | Wikipedia (Rubik's Cube); confirmed in Video 9 against cube20.org and Rokicki et al. 2013
+God's number for the cube | 20 | Rokicki, Kociemba, Davidson and Dethridge (2010) via Wikipedia; confirmed in Video 9 against cube20.org and Rokicki et al. 2013
+
+Total simulated games in the title | 27,500 | 10,000 seat + 7,500 rules + 6,000 dice + 4,000 replication (most dots and variety first, 2,000 each, fresh seeds 50,000+)
+
+KNOWN GAPS
+- Results are for the standard Catanatron bot, not human players, and domestic trading is unused (see Limits chapter).
+- "Variety first" is a rule I wrote; it is not proven optimal. Only five rules were tested; variety first (24.7%) matches the 25% fair share, interval 23.3-26.1; it does not beat the standard players.
+- Rule win rates carry about +/- 2 points (1,500 games each; +/- 1.4 for the two rules run on 3,500). Replication on fresh seeds gave the same ordering (most dots 17.4%, variety first 25.7%).
+- The 22%-vs-fair comparison in the 2025 paper is for three players (fair = 33%); the script says so.
+- The million-game study measures opening quality, not wins; the script says "opening".

@@ -1,0 +1,101 @@
+ways to roll each sum: {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1} total 36
+pips (= ways out of 36): {2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 7: 6, 8: 5, 9: 4, 10: 3, 11: 2, 12: 1}
+P(7) = 1/6 = 0.16666666666666666
+tokens 18 total pips on 18 hexes: 58
+hex 6: P(no production in 5 rolls) = 0.4735
+hex 6: P(no production in 10 rolls) = 0.2242
+hex 6: P(no production in 20 rolls) = 0.0503
+hex 8: P(no production in 5 rolls) = 0.4735
+hex 8: P(no production in 10 rolls) = 0.2242
+hex 8: P(no production in 20 rolls) = 0.0503
+hex 5: P(no production in 5 rolls) = 0.5549
+hex 5: P(no production in 10 rolls) = 0.3079
+hex 5: P(no production in 20 rolls) = 0.0948
+hex 9: P(no production in 5 rolls) = 0.5549
+hex 9: P(no production in 10 rolls) = 0.3079
+hex 9: P(no production in 20 rolls) = 0.0948
+hex 2: P(no production in 5 rolls) = 0.8686
+hex 2: P(no production in 10 rolls) = 0.7545
+hex 2: P(no production in 20 rolls) = 0.5693
+hex 12: P(no production in 5 rolls) = 0.8686
+hex 12: P(no production in 10 rolls) = 0.7545
+hex 12: P(no production in 20 rolls) = 0.5693
+6/8 hex expected wait: 7.2 rolls
+resource+desert arrangements 19!/(4!4!4!3!3!1!) = 244432188000
+number token arrangements on 18 land hexes (random) 18!/2^8 = 25009272288000
+total boards if tokens random: 6113071145643606144000000
+harbours: 9!/(4!) = 15120 (4 generic identical, 5 distinct specials)
+official spiral: tokens fixed by order -> boards = 244432188000 (x desert position already inside tiles); x harbours = 3695814682560000
+official_spiral N=5000: best single node pips avg 12.15 max 13 min 11; best legal pair total avg 23.68 min 22 max 25; boards with adjacent 6/8 hexes: 0.000%
+random N=5000: best single node pips avg 13.39 max 15 min 10; best legal pair total avg 25.70 min 20 max 29; boards with adjacent 6/8 hexes: 86.060%
+
+SEAT: 10000 games, finished 10000 (100.0%); avg turns 88.9, median 88.0
+  seat 1: 2794 wins = 27.9%  (95% CI 27.1% to 28.8%)
+  seat 2: 2445 wins = 24.4%  (95% CI 23.6% to 25.3%)
+  seat 3: 2467 wins = 24.7%  (95% CI 23.8% to 25.5%)
+  seat 4: 2294 wins = 22.9%  (95% CI 22.1% to 23.8%)
+  opening pips gap (best seat minus worst seat): mean 3.36, max 10
+  sole-best opening wins: 1885/6872 = 27.4% ; sole-worst opening wins: 1463/7368 = 19.9%
+  win rate by opening pips (n>=300): {16: (856, '15.9%'), 17: (1889, '18.2%'), 18: (3970, '22.8%'), 19: (8190, '23.9%'), 20: (8800, '25.8%'), 21: (9684, '26.3%'), 22: (4599, '27.9%'), 23: (1547, '28.2%')}
+  win rate by distinct resources in opening: {3: (38, '15.8%'), 4: (13124, '17.0%'), 5: (26838, '28.9%')}
+RULES: challenger (one seat, random seat) vs three default bots
+  pips     : 228/1500 = 15.2%  (95% CI 13.5% to 17.1%); avg opening pips 21.6
+  orewheat : 207/1500 = 13.8%  (95% CI 12.1% to 15.6%); avg opening pips 19.9
+  worst    : 0/1500 = 0.0%  (95% CI 0.0% to 0.3%); avg opening pips 1.4
+  diverse  : 350/1500 = 23.3%  (95% CI 21.3% to 25.5%); avg opening pips 19.4
+  random   : 20/1500 = 1.3%  (95% CI 0.9% to 2.1%); avg opening pips 10.9
+DICE: 150 boards x ~40 dice seeds; same board, same seating, same (deterministic) openings
+  most-successful seat wins on average 48.4% of games on a board (pure luck-free equal would be 25%)
+  boards where one seat wins >50%: 54/150 ; >40%: 105
+  distinct winners per board (of 4 seats): mean 3.85; boards where all 4 seats win at least once: 128/150
+  null (fair 4-way coin, 40 games): top-seat share averages 33.4%
+EXTRAS
+  rule pips: opening kinds {2: 69, 3: 616, 4: 717, 5: 98}
+     2 kinds: 69 games, challenger wins 2.9%
+     3 kinds: 616 games, challenger wins 10.6%
+     4 kinds: 717 games, challenger wins 17.2%
+     5 kinds: 98 games, challenger wins 38.8%
+  rule orewheat: opening kinds {1: 2, 2: 157, 3: 817, 4: 493, 5: 31}
+     1 kinds: 2 games, challenger wins 0.0%
+     2 kinds: 157 games, challenger wins 5.1%
+     3 kinds: 817 games, challenger wins 12.9%
+     4 kinds: 493 games, challenger wins 17.6%
+     5 kinds: 31 games, challenger wins 22.6%
+  rule diverse: opening kinds {4: 335, 5: 1165}
+     4 kinds: 335 games, challenger wins 14.6%
+     5 kinds: 1165 games, challenger wins 25.8%
+  rule random: opening kinds {1: 86, 2: 558, 3: 619, 4: 225, 5: 12}
+     1 kinds: 86 games, challenger wins 0.0%
+     2 kinds: 558 games, challenger wins 0.0%
+     3 kinds: 619 games, challenger wins 1.0%
+     4 kinds: 225 games, challenger wins 5.8%
+     5 kinds: 12 games, challenger wins 8.3%
+  rule worst: opening kinds {1: 1038, 2: 462}
+     1 kinds: 1038 games, challenger wins 0.0%
+     2 kinds: 462 games, challenger wins 0.0%
+  default bots opening kinds: {3: '0.1%', 4: '32.8%', 5: '67.1%'} avg pips 19.98
+  other bots avg pips in 'pips' challenger games: 19.72
+  dice-only: favourite chosen on 20 dice seeds wins 44.0% of the other 20 (fair would be 25%)
+  dice-only: correlation of seat win share with opening pips 0.105, with resource kinds 0.336
+  dice-only: seats with 4 resource kinds win 16.7% on average (195 seats)
+  dice-only: seats with 5 resource kinds win 29.0% on average (405 seats)
+  dice-only: the seat with the single most opening pips is the board's favourite on 34 of 111 boards
+
+=== actions_count.py ===
+100 games of four standard bots, average actions per game:
+  BUILD_CITY                7.50
+  BUILD_ROAD               33.81
+  BUILD_SETTLEMENT         17.64
+  BUY_DEVELOPMENT_CARD      2.20
+  DISCARD_RESOURCE         63.39
+  END_TURN                 84.27
+  MARITIME_TRADE           25.80
+  MOVE_ROBBER              15.63
+  PLAY_KNIGHT_CARD          1.12
+  PLAY_MONOPOLY             0.15
+  PLAY_YEAR_OF_PLENTY       0.16
+  ROLL                     85.25
+
+=== REPLICATION (fresh seeds 50000+, 2,000 games per rule) ===
+pips: 348/2000 = 17.4%  95% CI 15.8-19.1  opening dots 21.5  all-5-resources in 159 (8.0%)
+diverse: 514/2000 = 25.7%  95% CI 23.8-27.7  opening dots 19.4  all-5-resources in 1565 (78.2%)
