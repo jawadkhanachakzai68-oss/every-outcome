@@ -1,0 +1,37 @@
+EVERY OUTCOME - VIDEO 9 - CLAIMS TABLE (VERSION 2) (every number in the script, where it came from)
+Own code: geo.py/sym.py/burnside.py (box counts and symmetry families), bfs3.cpp (seven-move table), cube2.py/cube2sym.py (2x2x2), arith.py (exact arithmetic). Outputs are in V9_RubiksCube_Code_Output.txt.
+NOT rerun by us: the 20-move search itself (55,882,296 jobs, 35 CPU-years), and the speedcubing / fewest-moves records. Those come from the published sources below.
+
+CLAIM | VALUE IN SCRIPT | HOW CHECKED
+Number of Rubik's Cube positions | 43,252,003,274,489,856,000 ("forty-three quintillion") | Exact: 8! x 12! x 3^8 x 2^12 / 12 (arith.py). Matches Rokicki et al. 2013, Sec. 4, and cube20.org
+Who proved it, when, where published | Four researchers; 2010; (SIAM paper 2013) | Rokicki, Kociemba, Davidson, Dethridge, "The Diameter of the Rubik's Cube Group Is Twenty", SIAM J. Discrete Math. 27(2), 2013; cube20.org (July 2010)
+What counts as one move | Any turn of any face, quarter or half | Paper abstract: "a move is defined as any twist of any face"
+Superflip needs 20 moves, shown in 1995 | as stated | kociemba.org/moves20.htm: "The first cube proved in 1995 to need 20 moves was the superflip"
+Positions within 0 to 7 moves | 1; 18; 243; 3,240; 43,239; 574,908; 7,618,438; 100,803,036 | Own search (bfs3.cpp, bfs3_all.txt), ran in 31 s. Identical to the cube20.org distance table
+Growth after the first move | about x13 | Own counts: ratios 13.50, 13.33, 13.35, 13.30, 13.25, 13.23 (arith.py)
+Time to check every position | 1 billion per second = more than 1,300 years; 1 million per second = about a million years | Exact arithmetic (arith.py): 1,370 years and 1,370,000 years
+24 rotations x mirror = 48 versions | 48 | cube20.org (24 rotations and mirror, factor about 48); geometry
+Copies and reverses need the same number of moves | as stated | Group theory; verified on the 2x2x2: for all 3,674,160 positions the distance equals that of its 48 rotated/mirrored images and of its reverse (cube2sym.py, 0 exceptions)
+2x2x2 positions | 3,674,160 ("three point six seven million") | Exact: 7! x 3^6 (arith.py); jaapsch.net/puzzles/cube2.htm
+2x2x2 hardest position | 11 moves (14 counting quarter turns) | Own full search (cube2.py). Distance table identical to jaapsch.net/puzzles/cube2.htm in both metrics: 1, 9, 54, 321, 1,847, 9,992, 50,136, 227,536, 870,072, 1,887,748, 623,800, 2,644
+2x2x2 different positions after copies and reverses | 40,296 (77,802 with the 48 copies alone); about 91 to 1 | Own count (cube2sym.py): 3,674,160 / 40,296 = 91.2
+Families on the real cube after copies and reverses | about 450 quadrillion | Exact: 43,252,003,274,489,856,000 / 96 = 450,541,700,775,936,000 (an upper bound on the family count)
+Set H and its size | Top and bottom any turn, other four faces half turns only; 19,508,428,800 | Paper Sec. 4: |H| = 8! x 8! x 4! / 2 = 19,508,428,800; reproduced in arith.py
+Box = three small numbers | corner twists 2,187; edge flips 2,048; middle-layer edge places 495 | Own code (geo.py): the triple does not change when H-moves are done first (300 random tests, 0 violations) and does change for non-H first moves (300 of 300); counts 3^7, 2^11, C(12,4)
+Number of boxes | 2,217,093,120 ("two point two billion") | Exact: 2,187 x 2,048 x 495 = G / |H| = 2,217,093,120 (arith.py). Matches the paper
+Each box holds 19,508,428,800 positions; boxes cover the whole cube | as stated | Exact: 2,217,093,120 x 19,508,428,800 = G
+16 of the 48 copies keep the boxes intact | 16 | Paper Sec. 4 ("H exhibits 16-way symmetry"); our code uses the 16 symmetries that keep the top-bottom axis (sym.py)
+Families of boxes | 138,639,780 | Own count with Burnside's lemma (burnside.py). Equals the number in the paper. Action tables checked against explicit rotation/mirror of the cube on 640 random positions, 0 mismatches
+Jobs left after the authors' grouping | 55,882,296 | Paper (Sec. 4, set cover) and cube20.org. NOT recomputed by us
+Positions per job | about 774 billion | Exact: G / 55,882,296 = 773,984,005,139
+Time per job and total | about 20 seconds each; 35 years of computer time; donated by Google idle machines | cube20.org; paper Sec. 5/8 (34.75 CPU years). Arithmetic: 55,882,296 x 20 s = 35.4 years
+The proof did not look for shortest solutions | as stated | cube20.org: "Rather than finding optimal solutions, the team found solutions of 20 moves or less"
+Typical scramble needs 17.7 moves | about seventeen point seven; hundred thousand random cubes | kociemba.org/moves20.htm (2009 optimal run, Cube Explorer, 100,000 random positions; average ~17.7)
+Positions needing 20 moves | a few hundred million, about 1 in 100 billion (estimate) | Estimates: cube20.org about 490 million; paper Table 5.1 about 300 million. 3e8 to 4.9e8 out of 4.3e19 = 1 in 88 to 144 billion. Not exact counts
+Quarter-turn metric answer | twenty-six (counting only quarter turns) | cube20.org front page: "God's Number is 26 in the quarter turn metric". Our own 2x2x2 search gives 14 in the same metric, matching jaapsch.net
+Fastest solve ever recorded | 2.76 seconds, Teodor Zajder, 2026 | Wikipedia, List of world records in speedcubing (page state 28 June 2026: single 2.76 s, GLS Big Cubes Gdansk, 7-8 Feb 2026). Records change: see worldcubeassociation.org for the current record
+Popular speedcubing method (CFOP) move count | about 55 moves | Speedsolving.com wiki, CFOP page: "Avg Moves: 57.5". Journal of Emerging Investigators article 21-189: "54 moves on average". The script says "about fifty-five"
+Beginner method move count | more than a hundred | Journal of Emerging Investigators 21-189: Beginner's Method "on average, uses 135". Single source, so the script only says "more than a hundred"
+Fewest-moves competition: one hour, record 16 moves, set 2019, matched since | as stated | Guinness World Records, fewest moves to complete a Rubik's Cube: 16 moves, Sebastiano Tronto, FMC 2019; equalled by Aedan Bryant, Levi Gibson, and Jacob Sherwen Brown (Oct 2024). Wikipedia WR list also shows single 16. The one-hour limit is the WCA FMC rule: CHECK the current WCA regulation text on upload day
+Fast and short are different skills | opinion drawn from the numbers above | 2.76 s solves use about 55 moves, while a hand-found shortest solution is 16 moves in one hour; stated as a comparison, not a psychology claim
+Teaser: a Sudoku needs at least 17 clues | as stated | Published result (McGuire, Tugemann, Civario 2012); covered in the next video

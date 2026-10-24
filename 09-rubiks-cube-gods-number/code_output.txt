@@ -1,0 +1,44 @@
+EVERY OUTCOME - VIDEO 9 - CODE OUTPUT
+
+== arith.py ==
+G 43252003274489856000 formula 8!*12!*3^8*2^12/12
+H 19508428800
+G/H 2217093120 0
+3^7*2^11*C(12,4)= 2217093120
+cosets/16 (naive) 138568320.0  exact classes 138639780 (burnside)
+cosets/138639780 15.991753016342063
+positions per set (G/55,882,296)= 773984005139.8363
+time: 55,882,296 sets x 20 s = 1117645920 s = 35.41606205795117 years
+cube20: ~1.1e9 s -> 34.85689659543185 years
+check one position at 1e+06 per second: 1.37e+06 years
+check one position at 1e+09 per second: 1.37e+03 years
+48*2= 96  G/96= 4.50541700775936e+17
+growth ratios [18.0, 13.5, 13.33, 13.35, 13.3, 13.25, 13.23]
+2x2x2 positions 7!*3^6= 3674160
+
+== bfs3 (3x3x3 positions by number of moves, face-turn metric; 31 s) ==
+depth 0: 1
+depth 1: 18
+depth 2: 243
+depth 3: 3240
+depth 4: 43239
+depth 5: 574908
+depth 6: 7618438
+depth 7: 100803036
+
+== geo.py tests (coordinates are box labels) ==
+orders of the 6 face moves ok; H moves done first leave (twist, flip, slice) unchanged: 0 violations in 300 random tests; first move outside H changes them: 300 of 300; legal-state sums: twist%3=0, flip%2=0, 4 middle-layer edges
+symmetry action tables vs explicit rotation/mirror of the cube: 0 mismatches in 640 random positions (16 symmetries x 40)
+
+== burnside.py (families of boxes under the 16 symmetries) ==
+twist 2187  flip 2048  slice 495  product 2217093120
+sum of fixed points 2218236480 / 16 = 138639780 (remainder 0)
+
+== cube2.py (2x2x2 full search) ==
+face-turn metric: [1, 9, 54, 321, 1847, 9992, 50136, 227536, 870072, 1887748, 623800, 2644]  total 3674160  God's number 11
+quarter-turn metric: [1, 6, 27, 120, 534, 2256, 8969, 33058, 114149, 360508, 930588, 1350852, 782536, 90280, 276]  total 3674160  God's number 14
+
+== cube2sym.py (2x2x2 symmetry families) ==
+3674160 positions -> 77802 families under the 48 rotations/mirrors; 40296 with reverses too
+distance identical inside every family and for every reverse: True (all 3,674,160 positions)
+families per distance 0..11: [1, 2, 4, 14, 41, 157, 612, 2576, 9410, 20410, 7013, 56]

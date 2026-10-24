@@ -1,0 +1,14 @@
+G 43252003274489856000 formula 8!*12!*3^8*2^12/12
+H 19508428800
+G/H 2217093120 0
+3^7*2^11*C(12,4)= 2217093120
+cosets/16 (naive) 138568320.0  exact classes 138639780 (burnside)
+cosets/138639780 15.991753016342063
+positions per set (G/55,882,296)= 773984005139.8363
+time: 55,882,296 sets x 20 s = 1117645920 s = 35.41606205795117 years
+cube20: ~1.1e9 s -> 34.85689659543185 years
+check one position at 1e+06 per second: 1.37e+06 years
+check one position at 1e+09 per second: 1.37e+03 years
+48*2= 96  G/96= 4.50541700775936e+17
+growth ratios [18.0, 13.5, 13.33, 13.35, 13.3, 13.25, 13.23]
+2x2x2 positions 7!*3^6= 3674160

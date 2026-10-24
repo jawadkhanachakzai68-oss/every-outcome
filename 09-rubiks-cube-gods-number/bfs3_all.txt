@@ -1,0 +1,8 @@
+depth 0: 1
+depth 1: 18
+depth 2: 243
+depth 3: 3240
+depth 4: 43239
+depth 5: 574908
+depth 6: 7618438
+depth 7: 100803036
