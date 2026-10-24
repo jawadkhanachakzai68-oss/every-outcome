@@ -1,0 +1,2 @@
+classes 208  distinct band-3 shapes 3287262
+PARTIAL SUM (before the x 9! for renaming digits) = 9356757911700480

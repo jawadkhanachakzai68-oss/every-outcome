@@ -1,0 +1,120 @@
+EVERY OUTCOME - VIDEO 10 - CODE OUTPUT (real output of each program; long runs are logged copies)
+
+=== python3 check_17.py
+clues: 17
+solutions: 1 in 0.02s
+solution grid: 527316489896542731314987562172453896689271354453698217941825673765134928238769145 valid: True
+remove clue at row 1 col 1 (digit 5): 2 solution(s)
+remove clue at row 1 col 2 (digit 2): 2 solution(s)
+remove clue at row 1 col 6 (digit 6): 2 solution(s)
+remove clue at row 2 col 7 (digit 7): 2 solution(s)
+remove clue at row 2 col 9 (digit 1): 2 solution(s)
+remove clue at row 3 col 1 (digit 3): 2 solution(s)
+remove clue at row 4 col 4 (digit 4): 2 solution(s)
+remove clue at row 4 col 7 (digit 8): 2 solution(s)
+remove clue at row 5 col 1 (digit 6): 2 solution(s)
+remove clue at row 5 col 8 (digit 5): 2 solution(s)
+remove clue at row 7 col 2 (digit 4): 2 solution(s)
+remove clue at row 7 col 3 (digit 1): 2 solution(s)
+remove clue at row 7 col 4 (digit 8): 2 solution(s)
+remove clue at row 8 col 5 (digit 3): 2 solution(s)
+remove clue at row 8 col 8 (digit 2): 2 solution(s)
+remove clue at row 9 col 3 (digit 8): 2 solution(s)
+remove clue at row 9 col 4 (digit 7): 2 solution(s)
+clues that cannot be removed: 17 of 17
+
+=== python3 unavoidable.py
+found 293 minimal unavoidable sets up to size 12 in 2.4s
+[(4, 10), (6, 9), (8, 31), (9, 4), (10, 56), (11, 37), (12, 146)]
+self-check: sets that are NOT unavoidable: 0
+
+=== python3 check_ua.py
+size-4 sets: brute force 10 search 10 same: True
+upside-down search gives 293 sets; same family: True
+
+=== ./run_hitting_counts.sh (logged)
+K=14: NONE EXISTS  (search steps 25340714)
+K=15: FOUND  (search steps 97453890)
+cells: 1 45 63 67 80 56 77 12 51 61 37 7 35 11 40
+K=16: FOUND  (search steps 109676)
+cells: 29 47 63 76 71 19 23 79 13 3 53 10 35 50 16 59
+K=17: FOUND  (search steps 219)
+cells: 29 47 63 76 71 19 23 44 31 3 52 10 62 22 24 14 79
+K=14: 0 groups touch every set (0 search leaves)
+  time: 8.004 s of CPU
+K=15: 4 groups touch every set (4 search leaves)
+  time: 51.957 s of CPU
+K=16: 8259 groups touch every set (8103 search leaves)
+  time: 343.190 s of CPU
+
+=== python3 test_groups.py
+groups15.txt choices tested: 4 with exactly one solution: 0
+groups16.txt choices tested: 8259 with exactly one solution: 0
+
+=== python3 toy4x4.py
+4x4 grids: 288
+clues 1 : puzzles with exactly one solution: 0
+clues 2 : puzzles with exactly one solution: 0
+clues 3 : puzzles with exactly one solution: 0
+clues 4 : puzzles with exactly one solution: 25728
+clues 5 : puzzles with exactly one solution: 284160
+fewest clues that can give one solution: 4
+
+=== bandclasses (stderr)
+2612736 top bands with row 1 fixed
+416 classes
+
+=== gridcount (logged; two halves)
+classes 208  distinct band-3 shapes 3287262
+PARTIAL SUM (before the x 9! for renaming digits) = 9356757911700480
+classes 208  distinct band-3 shapes 3293328
+PARTIAL SUM (before the x 9! for renaming digits) = 9026464508992512
+part sums: [9356757911700480, 9026464508992512]
+total Sudoku grids = 6,670,903,752,021,072,936,960
+equals the published 6,670,903,752,021,072,936,960: True
+
+=== python3 facts.py
+grids: 6,670,903,752,021,072,936,960
+symmetry group size (9! x 6^8 x 2): 1,218,998,108,160
+grids / group size = 5472447994.271605   published essentially different: 5472730538
+C(81,16) = 33,594,090,947,249,085  C(81,17) = 128,447,994,798,305,325
+naive 16-clue checks = grids x C(81,16) = 2.241e+38
+naive with symmetry  = 5,472,730,538 x C(81,16) = 1.839e+26
+ratio C(81,17)/C(81,16) = 3.823529411764706
+paper: ~800 processor-years / 5,472,730,538 grids = 4.61 s per grid
+my slow version on one grid: 343 s -> 59483 years for all grids on one core
+one grid per second at 1 core: 173.4 years
+7 million CPU hours = 799 years
+
+=== python3 human_solver.py
+solved with human techniques only: True {'hidden single': 15, 'locked candidates': 9, 'naked single': 49} filled 81 of 81
+
+=== python3 human_stats.py 150
+random minimal puzzles: 150 clues min/mean/max: 22 24.4 27
+  singles only 70
+  stuck (ran out of the techniques I coded) 57
+  singles + locked candidates 14
+  needs pairs 8
+  needs triples 1
+
+=== python3 private_groups.py
+groups of 14 cells or fewer: 806
+clue row 1 col 1 = 5: groups where it is the only clue: 4 (smallest 4 cells)
+clue row 1 col 2 = 2: groups where it is the only clue: 4 (smallest 4 cells)
+clue row 1 col 6 = 6: groups where it is the only clue: 13 (smallest 8 cells)
+clue row 2 col 7 = 7: groups where it is the only clue: 12 (smallest 6 cells)
+clue row 2 col 9 = 1: groups where it is the only clue: 7 (smallest 6 cells)
+clue row 3 col 1 = 3: groups where it is the only clue: 4 (smallest 4 cells)
+clue row 4 col 4 = 4: groups where it is the only clue: 11 (smallest 4 cells)
+clue row 4 col 7 = 8: groups where it is the only clue: 13 (smallest 6 cells)
+clue row 5 col 1 = 6: groups where it is the only clue: 17 (smallest 6 cells)
+clue row 5 col 8 = 5: groups where it is the only clue: 11 (smallest 4 cells)
+clue row 7 col 2 = 4: groups where it is the only clue: 6 (smallest 11 cells)
+clue row 7 col 3 = 1: groups where it is the only clue: 4 (smallest 8 cells)
+clue row 7 col 4 = 8: groups where it is the only clue: 10 (smallest 10 cells)
+clue row 8 col 5 = 3: groups where it is the only clue: 7 (smallest 4 cells)
+clue row 8 col 8 = 2: groups where it is the only clue: 7 (smallest 8 cells)
+clue row 9 col 3 = 8: groups where it is the only clue: 5 (smallest 4 cells)
+clue row 9 col 4 = 7: groups where it is the only clue: 5 (smallest 4 cells)
+fewest for any clue: 4
+at the start: cells with one possibility: 0 ; hidden singles: 4

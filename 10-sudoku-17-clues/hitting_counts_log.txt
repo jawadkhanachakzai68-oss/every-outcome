@@ -1,0 +1,13 @@
+K=14: NONE EXISTS  (search steps 25340714)
+K=15: FOUND  (search steps 97453890)
+cells: 1 45 63 67 80 56 77 12 51 61 37 7 35 11 40
+K=16: FOUND  (search steps 109676)
+cells: 29 47 63 76 71 19 23 79 13 3 53 10 35 50 16 59
+K=17: FOUND  (search steps 219)
+cells: 29 47 63 76 71 19 23 44 31 3 52 10 62 22 24 14 79
+K=14: 0 groups touch every set (0 search leaves)
+  time: 8.004 s of CPU
+K=15: 4 groups touch every set (4 search leaves)
+  time: 51.957 s of CPU
+K=16: 8259 groups touch every set (8103 search leaves)
+  time: 343.190 s of CPU

@@ -1,0 +1,38 @@
+EVERY OUTCOME - VIDEO 10 - CLAIMS TABLE (every number in the script, where it came from)
+Own code (folder code/): sudoku_tools.py (solver), check_17.py, unavoidable.py, check_ua.py, hs.c, hscount.c, hslist.c, toy4x4.py, human_solver.py, human_stats.py, facts.py, bandclasses.c + gridcount.c (grid count). Outputs are in V10_Sudoku17_Code_Output.txt.
+NOT rerun by us: the full proof (about 800 processor-years, 5,472,730,538 grids), the count of essentially different grids (Russell and Jarvis), the list of about 49,000 known 17-clue puzzles. Those come from the published sources below.
+LABEL RULE: where a number is from one grid or one sample, the script says so ("on this grid", "this puzzle", "a hundred fifty random puzzles").
+
+CLAIM | VALUE IN SCRIPT | HOW CHECKED
+17 is the minimum number of clues; no 16-clue puzzle has exactly one solution | as stated | McGuire, Tugemann, Civario, "There is no 16-Clue Sudoku", arXiv 1201.0749 (posted Jan 2012; v2 Sep 2013). Abstract: exhaustive search found none. NOT rerun by us
+Authors | Gary McGuire, Bastian Tugemann, Gilles Civario | arXiv listing
+Proved in 2012 | "twenty twelve" | arXiv 1201.0749 first posted 1 Jan 2012; UCD news release 10 Jan 2012
+Later published in Experimental Mathematics | as stated | Wikipedia "Mathematics of Sudoku": Experimental Mathematics 23(2), 2014, pp. 190-217. The publisher page (tandfonline) was blocked for us, so CHECK this on upload day or delete the words "and later published in Experimental Mathematics" from block B03
+About 49,000 known 17-clue puzzles | "about forty-nine thousand" | Paper: Gordon Royle's list had 49,151 distinct 17-clue puzzles. sudokuwiki.org quotes 49,157 as of 2018 (+1 in 2021). Our wording "about forty-nine thousand" covers both
+The authors believe the list holds almost every 17-clue puzzle | as stated | Paper (sampling check: 9 hits found against about 9.26 expected)
+Number of completed Sudoku grids | 6,670,903,752,021,072,936,960 ("six point six seven sextillion") | OWN CODE (bandclasses.c + gridcount.c): 416 classes of the first band, every middle band, count of the last band; two parts 9,356,757,911,700,480 + 9,026,464,508,992,512, times 362,880 = 6,670,903,752,021,072,936,960. Matches the number printed in the McGuire paper, digit for digit
+Number of valid top bands with first row fixed | 2,612,736 -> 416 classes | OWN CODE (bandclasses.c). 416 matches the published number of classes
+Number of moves that keep a Sudoku valid (symmetry) | 1,218,998,108,160 ("one point two two trillion") | Exact: 9! x 6^8 x 2 (facts.py): digit renaming 9!, rows and columns within and between bands (6^4 each), flipping across the diagonal x2
+Essentially different grids | 5,472,730,538 ("five point four seven billion") | Paper (credits Russell and Jarvis, Burnside's lemma; Pettersen confirmed). Our check: 6,670,903,752,021,072,936,960 / 1,218,998,108,160 = 5,472,447,994 (a bit lower than the exact count because a few grids have symmetries of their own). NOT recomputed exactly
+Ways to choose 16 clue cells of 81 | 33,594,090,947,249,085 ("thirty-three point six quadrillion") | Exact: C(81,16) (facts.py)
+Naive number of checks | about 1.84 x 10^26 ("a hundred eighty-four septillion") | Exact: 5,472,730,538 x C(81,16) = 1.839 x 10^26 (facts.py)
+Time at 1 billion checks per second | about 5.8 billion years | Exact arithmetic (facts.py): 1.839e26 / 1e9 s = 5.83e9 years
+Unavoidable group (rectangle swap) | A B / B A over two boxes | Own code (check_ua.py): rectangle count by brute force = 10 = the 10 groups of size 4 found by the search
+Groups on the real grid, size 12 or fewer | 293: 10 of size 4, 9 of 6, 31 of 8, 4 of 9, 56 of 10, 37 of 11, 146 of 12 | OWN CODE (unavoidable.py). Self-check: all 293 are truly unavoidable (removing the group from the solved grid leaves 2+ solutions: 0 failures). Search run twice (grid turned upside down): same 293
+Groups on the same grid, size 14 or fewer | 806 (adds 127 of size 13 and 386 of size 14) | OWN CODE (unavoidable.py, maxsize 14). Used only in the technical receipts, not spoken
+Real 17-clue puzzle | 52...6.........7.13...........4..8..6......5...........418.........3..2...87..... | Found in the README of github.com/megabyt-dev/sudoku.js. OWN CODE (check_17.py): 17 clues, exactly 1 solution, and removing any single clue gives 2 solutions (17 of 17)
+Fewest cells that touch all 293 groups | 15 (14 impossible; 4 sets of 15) | OWN CODE (hs.c: exhaustive search; hscount.c: exact counts). 14 -> none; 15 -> exactly 4
+16-cell choices that touch all 293 groups | 8,259 (about 1 in 4 trillion of C(81,16)) | OWN CODE (hscount.c exact count; hslist.c lists them). 33,594,090,947,249,085 / 8,259 = 4.07 x 10^12
+Of those 8,259, how many leave exactly one solution | 0 | OWN CODE (sudoku_tools.py solver over all 8,259 lists, plus the 4 sets of 15: 0 unique). So on this grid no 16-clue puzzle exists. Any 16-cell choice that misses a group has 2+ solutions by definition of the group
+Each of the 17 clues is the only clue inside at least 4 groups | "at least four" | OWN CODE: for every clue, the groups (of size 14 or fewer) that contain that clue and no other clue: counts 4 to 17 (minimum 4). All 17 clues have one
+4x4 Sudoku grids | 288 | OWN CODE (toy4x4.py)
+4x4 puzzles with exactly one solution by number of clues | 1 clue: 0; 2: 0; 3: 0; 4: 25,728 | OWN CODE (toy4x4.py, brute force over all 288 grids x all clue sets). Minimum for 4x4 = 4
+My code on this grid | "about six minutes" | Measured: hscount.c for 16 cells = 343 s of CPU on one core (an earlier run took 366 s), plus about 2.4 s to find the groups. Under the same measure my version would need 5,472,730,538 x 343 s = 59,483 years IF every grid behaved like this one (assumption stated in the script: "if every grid took as long as mine")
+Authors' total computer time | about 7 million processor hours = about 800 processor-years; about a year; supercomputer in Dublin | Paper (about 800 processor-years); UCD news (about 12 months, about 7 million CPU hours, ICHEC Dublin); Nature blog (7 million; a correction says "700 million" was a misprint). 7,000,000 h / 8,766 h per year = 799 years
+Average time per grid for the authors | about 4.6 seconds | Exact arithmetic (facts.py): 800 years x 31,557,600 s / 5,472,730,538 = 4.61 s. This is an average derived from published totals, not a figure from the paper
+Technique: unions of non-overlapping groups prune the search | as stated | Paper (higher-degree unavoidable sets from cliques of pairwise disjoint sets). NOT rerun
+Human solver: 17-clue puzzle needed 49 naked singles, 15 hidden singles, 9 locked-candidate steps | 49 / 15 / 9 | OWN CODE (human_solver.py). 49 + 15 = 64 = 81 - 17 placements. No pairs, triples or guessing used
+At the start no cell has a single possibility | as stated | OWN CODE: 0 naked singles at the start; 4 hidden singles
+150 random puzzles (made by removing clues until one more removal breaks uniqueness) | clues 22 to 27, mean 24.4 | OWN CODE (human_stats.py, seed 2026)
+Of the 150: 70 singles only; 14 needed locked candidates; 9 needed pairs or triples; 57 stuck | 70 / 14 / 9 / 57 | OWN CODE (human_stats.py). "Stuck" = ran out of the techniques coded (singles, locked candidates, pairs, triples, X-wing), not proof that guessing is needed
+Newspaper Sudoku gives about 25 clues | "about twenty-five" | Own sample above: 150 random minimal puzzles average 24.4 clues. Typical published puzzles range roughly 22 to 30; wording "about" only. If you want a source, cite the Logimyth video (about twenty-five) or drop this sentence
