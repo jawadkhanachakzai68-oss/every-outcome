@@ -11,6 +11,7 @@ Every video has a folder. Inside each folder:
 | --- | --- |
 | `08-catan-opening-strategies` | The Best Catan Opening Strategy, Tested in 27,500 Games |
 | `09-rubiks-cube-gods-number` | Rubik's Cube God's Number Is 20. How Was It Proved? |
+| `10-sudoku-17-clues` | Why Every Sudoku Needs at Least 17 Clues |
 
 More folders are added with each new video. If you find a mistake, open an issue and I will check it and correct the video description.
 
